@@ -1,0 +1,217 @@
+<%- include('./parts/header.ejs'); %>
+<%- include('./parts/snav.ejs'); %>
+<!-- MAIN CONTENT-->
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <%- include('./parts/alert.ejs'); %>
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 ">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <strong>Request Details</strong>
+                            </div>
+                            <div class="card-body card-block">
+                                <form action="/s/requests" method="post" class="form-horizontal">
+                                    <input type="hidden" name="request" value="<%= request._id %>">
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Request Date</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=request.date %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Customer Name</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=customer.firstName + ' ' + customer.middleName + ' ' + customer.lastName%> </strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Address</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=customer.address + ', ' + customer.district + ', ' + customer.state + ', ' + customer.pincode %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Contact No.</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=customer.mobile %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Order Type</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=request.type %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Prescription</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <a target="_blank" href="/<%=request.prescriptionImage %>" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Till Date</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=request.wantDate %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label"> User's Comment</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=request.userComment %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="availability" class="form-control-label">Availability</label>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <select name="availability" id="availability" class="form-control">
+                                                <option value="0">Not Available</option>
+                                                <option value="1">Partially Available</option>
+                                                <option value="2" selected>Available</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="provideDate" class="form-control-label">Pickup / Delivery Date</label>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <input name="provideDate" type="text" id="provideDate" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="textarea-input" class="form-control-label">Comment</label>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <textarea name="comment" id="textarea-input" rows="4"
+                                placeholder="If any specification, write here!" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div id="medicine-section">
+                                        <div class="row form-group justify-content-center">
+                                            <strong>Enter Medicines Information</strong>
+                                        </div>
+                                    <div class="row form-group justify-content-center">
+                                        <div class="col col-md-6">
+                                            <input type="text" v-model.lazy.trim="name" class="form-control"  placeholder="Medicine Name">
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <input type="number" min="0" step="0.01" v-model.lazy.trim="price" class="form-control" placeholder="Price">
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <input type="submit" value="Add" class="btn btn-secondary" @click.prevent="addMedicine">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group justify-content-center" v-if="medicines.length != 0">
+                                        <div class="col-lg-6">
+                                            <!-- <div class="table-responsive">
+                                                <table class="table table-top-campaign"> -->
+                                            <div class="table-responsive table--no-card m-b-30">
+                                                <table class="table table-borderless table-striped table-earning">
+                                                    <thead>
+                                                        <tr>
+                                                            <th v-for="(head, index) in header" :key="index">{{ head }}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr v-for="(medicine, index) in medicines" :key="index">
+                                                            <td>{{medicine.name}}</td>
+                                                            <input type="hidden" :name="'medicines['+index+'][name]'" :value="medicine.name">
+                                                            <td>{{medicine.price.toFixed(2)}}<span style="float: right;" @click="removeMedicine(index)"><strong>X</strong></span></td>
+                                                            <input type="hidden" :name="'medicines['+index+'][price]'" :value="medicine.price.toFixed(2)">
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right"><strong>Total</strong></td>
+                                                            <td> <strong>₹{{medicineTotal.toFixed(2)}}</strong></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="row form-group justify-content-center">
+                                        <input type="submit" class="btn btn-primary" value="Submit">
+                                    </div>
+                                    
+                                   
+                                </form>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#provideDate').datetimepicker({
+            format: 'DD/MM/YYYY hh:mm A'
+        });
+    });
+
+    const MedicineSection = {
+        data(){
+            return{
+                header:['Medicine Name', 'Price'],
+                name: '',
+                price: '',
+                medicines:[]
+            }
+        },
+        methods:{
+            addMedicine(){
+                if(this.name != "" && this.price != 0 ){
+                    this.medicines.push({
+                        name: this.capitalize(this.name),
+                        price: parseFloat(this.price)
+                    });
+                }
+                this.name = '';
+                this.price = '';
+            },
+            capitalize: function (value) {
+                if (!value) return '';
+                value = value.toString();
+                value = value.charAt(0).toUpperCase() + value.slice(1);
+                return value;
+            },
+            removeMedicine(index){
+                this.medicines.splice(index,1);
+            }
+        },
+        computed:{
+            medicineTotal(){
+                let total = 0;
+                this.medicines.forEach(medicine => {
+                    total += medicine.price;
+                });
+                return total;
+            }
+        },
+        
+    };
+    Vue.createApp(MedicineSection).mount('#medicine-section');
+</script>
+<%- include('./parts/footer.ejs'); %>

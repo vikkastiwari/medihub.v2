@@ -1,0 +1,109 @@
+<%- include('./parts/header.ejs'); %> 
+<%- include('./parts/cnav.ejs'); %> 
+
+        <!-- PAGE CONTENT-->
+        <div class="page-content--bgf7">
+            <%- include('./parts/alert.ejs'); %> 
+            <!-- BREADCRUMB-->
+            <section class="au-breadcrumb2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                                <!-- <div class="au-breadcrumb-left">
+                                    <span class="au-breadcrumb-span">You are here:</span>
+                                    <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                        <li class="list-inline-item active">
+                                            <a href="cindex.html">Home</a>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                                <form class="au-form-icon--sm" action="/c" method="post">
+                                    <input class="au-input--w300 au-input--style2" name="search" type="text" placeholder="Search Pincode">
+                                    <button class="au-btn--submit2" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END BREADCRUMB-->
+
+            <!-- WELCOME-->
+            <section class="welcome p-t-10">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="title-4">Welcome back
+                                <span><%= currentUser.username != 'Unnamed' ? currentUser.username + ' !' : ' !' %></span>
+                            </h1>
+                            <hr class="line-seprate">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END WELCOME-->
+
+            <!-- STATISTIC-->
+            <section class="statistic statistic2">
+                <div class="container">
+                    <div class="row">
+                        <% shops.forEach((shop)=>{ %>
+                            <div class="col-md-6 col-lg-3" style="box-shadow: 0 1px 3px 1px rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);">
+                                <div class="statistic__item ">
+                                    <a href="/c/enquiry/<%= shop._id %>">
+                                        <h4 style="padding: 5px 0;"><%= shop.shopName %></h4>
+                                        <h5 style="font-weight: 500; padding: 2px;">Contact : <strong><%= shop.mobile %></strong></h5>
+                                        <h5 style="font-weight: 500; padding: 2px;">Address : <strong><%= shop.address +' '+ shop.district + ' ' + shop.state + ' - ' + shop.pincode %></strong></h5>
+                                        <% if(shop.pickup){ %><h5 style="font-weight: 500; padding: 2px;">Pickup Available</h5> <% } %>
+                                        <% if(shop.delivery){ %><h5 style="font-weight: 500; padding: 2px;">Delivery Available</h5> <% } %>
+                                        
+                                        <!-- <span class="desc"><%= shop.shopName %></span><br>
+                                        <span class="desc">Contact : <%= shop.mobile %></span><br>
+                                        <span class="desc">Address : <%= shop.address %></span><br>
+                                        <% if(shop.pickup){ %><span class="desc">Pickup Available</span><br> <% } %>
+                                        <% if(shop.delivery){ %><span class="desc">Delivery Available</span> <% } %> -->
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-account-o"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        <% }) %>
+                        
+                    </div>
+                    <% if(shops.length == 0) { %>
+                        <div class="row justify-content-center">
+                            <strong style="text-align: center;">No shops are present.</strong>
+                        </div>
+                    <% } %>
+                </div>
+            </section>
+            <!-- END STATISTIC-->
+
+            <!-- <section>
+                <div class="user-data__footer">
+                    <button class="au-btn au-btn-load">load more</button>
+                </div>
+            </section> -->
+
+            <!-- COPYRIGHT-->
+            <section class="p-t-60 p-b-20">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2020 MediHub. All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END COPYRIGHT-->
+        </div>
+
+    
+<%- include('./parts/footer.ejs'); %>
+   

@@ -1,0 +1,138 @@
+<%- include('./parts/header.ejs'); %>
+    <%- include('./parts/cnav.ejs'); %>
+
+        <div class="container">
+
+            <%- include('./parts/alert.ejs'); %>
+                <div class="login-wrap">
+                    <!-- login-wrap -->
+                    <div class="card">
+                        <div class="card-header" style="text-align : center;">
+                            <strong>Enter Below Details</strong>
+                        </div>
+                        <div class="card-body card-block">
+                            <form action="/c/enquiry" method="post" enctype="multipart/form-data"
+                                class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class="form-control-label">Shop</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="hidden" name="shop" value="<%= shop._id %>">
+                                        <strong>
+                                            <%= shop.shopName %>
+                                        </strong>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="textarea-input" class="form-control-label">Address</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <strong>
+                                            <%= shop.address %>
+                                        </strong>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class="form-control-label">Contact</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <strong>
+                                            <%= shop.mobile %>
+                                        </strong>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="file-input" class="form-control-label">File<sup
+                                                style="color: red; font-weight: bold;">*</sup></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="file" id="file-input" name="prescription"
+                                            class="form-control-file">
+                                        <small class="help-block form-text">Please upload your prescription</small>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class=" form-control-label">Service<sup
+                                                style="color: red; font-weight: bold;">*</sup></label>
+                                    </div>
+                                    <div class="col col-md-9">
+                                        <% if (shop.pickup && shop.delivery) { %>
+                                            <div class="form-check-inline form-check"
+                                                style="display:flex;justify-content: space-around;">
+                                                <label for="inline-radio1" class="form-check-label ">
+                                                    <input type="radio" id="inline-radio1" name="type" value="Pickup"
+                                                        class="form-check-input">Pickup
+                                                </label>
+                                                <label for="inline-radio2" class="form-check-label ">
+                                                    <input type="radio" id="inline-radio2" name="type" value="Delivery"
+                                                        class="form-check-input">Delivery
+                                                </label>
+                                            </div>
+                                            <% } else if(shop.delivery){ %>
+                                                <input type="hidden" name="type" value="Delivery" />
+                                                <strong>Only Home Delivery is available.</strong>
+                                                <% } else { %>
+                                                    <input type="hidden" name="type" value="Pickup" />
+                                                    <strong>Only Pickup is available</strong>
+                                                    <% } %>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="textarea-input" class="form-control-label">Date</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input name="date" type="text" id="wantedDate" class="form-control">
+                                        <small class="help-block form-text">Please mention date and time until when it
+                                            is
+                                            required</small>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="textarea-input" class="form-control-label">Comment</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <textarea name="comment" id="textarea-input" rows="4"
+                                            placeholder="If any specification, Let us know here!!"
+                                            class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <small class="help-block form-text"> NOTE : Your Email ID and Mobile Number will be
+                                        used to
+                                        communicate with you.</small>
+
+                                </div>
+                                <div class="card-footer" style="text-align : center;">
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Submit
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-ban"></i> Reset
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <script>
+            $(function () {
+                $('#wantedDate').datetimepicker({
+                    format: 'DD/MM/YYYY hh:mm A'
+                });
+            });
+
+        </script>
+        <%- include('./parts/footer.ejs'); %>

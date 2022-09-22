@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <style>
+        table,
+        tr,
+        td,
+        th {
+            /* border: 1px solid black; */
+            text-align: center;
+        }
+
+        th {
+            background-color: black;
+            color: white;
+            padding: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: #0278ae;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        a[href] {
+            color: #15c;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Dear <strong>
+            <%=user %>
+        </strong>,</p>
+    <p>This email is regarding your request on <b>MEDIHUB</b>. Details regarding your request are mentioned below.</p>
+    <p>Shop Name : <strong>
+            <%=shopName %>
+        </strong></p>
+    <p>Contact No.: <strong>
+            <%=mobile %>
+        </strong></p>
+    <p>Availability :
+        <strong>
+            <%= myrequest.availability==1 ? 'Partially Available' : myrequest.availability==2 ? 'Available'
+                : 'Not Available' ; %>
+        </strong>
+    </p>
+    <p>Service Type : <strong>
+            <%=myrequest.type %>
+        </strong></p>
+    <p>
+        <%=myrequest.type %> Date : <strong>
+                <%=myrequest.provideDate %>
+            </strong>
+    </p>
+    <% if(myrequest.medicines.length !=0) { %>
+        <div style="max-width:500px; margin: auto; text-align: center; ">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Medicine Name</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% var total=0; myrequest.medicines.forEach((medicine, index)=>{%>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+                            <td>
+                                <%= medicine.name %>
+                            </td>
+                            <td>
+                                <%= medicine.price%>
+                            </td>
+                        </tr>
+                        <% total +=medicine.price }); %>
+                            <tr style="border-top: 1px solid black;">
+                                <td></td>
+                                <td class="bold">Total</td>
+                                <td class="bold">
+                                    <%= total %>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <center>
+            <a style="color: white;" href="<%= Host %>/c/order-confirmation/<%= myrequest._id %>" target="_blank"
+                class="btn">Confirm</a>
+        </center>
+        <% } %>
+
+</body>
+
+</html>

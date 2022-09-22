@@ -1,0 +1,121 @@
+<%- include('./parts/header.ejs'); %>
+<%- include('./parts/snav.ejs'); %>
+<!-- MAIN CONTENT-->
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <%- include('./parts/alert.ejs'); %>
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 ">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <strong>Your Order Details</strong>
+                            </div>
+                            <div class="card-body card-block">
+                                <form action="/s/order/delivered" method="post" class="form-horizontal">
+                                    <input type="hidden" name="orderId" value="<%=order._id %>">
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Order Date</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=order.date %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Shop Name</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=customer.firstName + ' ' + customer.middleName + ' ' + customer.lastName %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Address</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=customer.address + ', ' + customer.district + ', ' + customer.state + '-' + customer.pincode %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Contact No.</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=customer.mobile %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Order Type</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=order.type %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label"><%=order.type %> Date</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=order.provideDate %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Status</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=order.status ? 'Delivered' : 'Pending' %></strong>
+                                        </div>
+                                    </div>
+                                    <% if(order.medicines && order.medicines.length != 0 ){%>
+                                    <div class="row form-group justify-content-center" v-if="medicines.length != 0">
+                                        <div class="col-lg-6">
+                                            <div class="table-responsive table--no-card m-b-30">
+                                                <table class="table table-borderless table-striped table-earning">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Medicine Name</th>
+                                                            <th>Price</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% var total = 0; order.medicines.forEach(medicine => { %>
+                                                            <tr v-for="(medicine, index) in medicines" :key="index">
+                                                                <td><%= medicine.name %></td>
+                                                               
+                                                                <td><%= medicine.price.toFixed(2) %></td>
+                                                                
+                                                            </tr>
+                                                        <% total += medicine.price; })%>
+                                                        <tr>
+                                                            <td class="text-right"><strong>Total</strong></td>
+                                                            <td> <strong>₹<%= total.toFixed(2) %></strong></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Is this order Completed ?</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="submit" value="Yes" class="btn btn-success">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./parts/footer.ejs'); %>

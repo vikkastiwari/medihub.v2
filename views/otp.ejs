@@ -1,0 +1,33 @@
+<%- include('./parts/header.ejs'); %>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <div class="page-content--bge5">
+            <div class="container">
+                <%- include('./parts/alert.ejs'); %>
+                <div class="login-wrap">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <a href="/index1.html">
+                                <img src="/images/icon/medihublogo.png" alt="MediHub">
+                            </a>
+                        </div>
+                        <div class="login-form">
+                            <form action="/register/otp" method="post">
+                                <div class="form-group">
+                                    <label><strong>OTP</strong></label>
+                                    <input class="au-input au-input--full" type="text" name="otp"
+                                        placeholder="Enter OTP">
+                                </div>
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Verify</button>
+                            </form>
+                            <form action="/register/resendOtp" method="post">
+                                <button class="au-btn au-btn--block au-btn--red m-b-20" type="submit">Resend</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('./parts/footer.ejs'); %>

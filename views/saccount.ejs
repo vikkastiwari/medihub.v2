@@ -1,0 +1,94 @@
+<%- include('./parts/header.ejs'); %>
+<%- include('./parts/snav.ejs'); %>
+
+<div class="container">
+    <%- include('./parts/alert.ejs'); %>
+    <div class="login-wrap">
+        <div class="login-content">
+            <div class="login-logo">
+                <a href="#">
+                    <img src="/images/icon/medihublogo.png" alt="MediHub">
+                </a>
+            </div>
+            <div class="login-form">
+                <form action="/s/account" method="post">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input class="au-input au-input--full" type="email" name="email" placeholder="Email"
+                            value="<%= user ? user.email : '' %>">
+                    </div>
+                    <div class="form-group">
+                        <label>Shop Name</label>
+                        <input class="au-input au-input--full" type="text" name="shopName" placeholder="Shop Name"
+                            value="<%= user ? user.shopName : '' %>">
+                    </div>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input class="au-input au-input--full" type="text" name="firstName" placeholder="First Name"
+                            value="<%= user ? user.firstName : '' %>">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input class="au-input au-input--full" type="text" name="lastName" placeholder="Last Name"
+                            value="<%= user ? user.lastName : '' %>">
+                    </div>
+                    <div class="form-group">
+                        <label>Date-Of-Birth</label>
+                        <input class="au-input au-input--full" id="birthday" type="text" name="dob"
+                            placeholder="DD/MM/YYYY" value="<%= user ? user.dob : '' %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile Number</label>
+                        <input class="au-input au-input--full" type="text" name="mobile" placeholder="10 digits"
+                            value="<%= user ? user.mobile : '' %>">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input class="au-input au-input--full" type="text" name="address" placeholder="Address"
+                            value="<%= user ? user.address : '' %>">
+                    </div>
+                    <div class="form-group">
+                        <label>Pin Code</label>
+                        <input class="au-input au-input--full" type="number" name="pincode" placeholder="Pin"
+                            id="pincode" value="<%= user ? user.pincode : '' %>">
+                    </div>
+                    <div class="form-group">
+                        <label>District</label>
+                        <input class="au-input au-input--full" type="text" name="district" id="district"
+                            placeholder="District" value="<%= user ? user.district : '' %>">
+                    </div>
+                    <div class="form-group">
+                        <label>State</label>
+                        <input class="au-input au-input--full" type="text" name="state" id="state" placeholder="State"
+                            value="<%= user ? user.state : '' %>">
+                    </div>
+                    
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">Services</label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check">
+                                <div class="checkbox">
+                                    <label for="checkbox1" class="form-check-label ">
+                                        <input type="checkbox" id="checkbox1" name="pickup" value="true" class="form-check-input" <%= user.pickup ? 'checked' : '' %> >Pickup
+                                    </label>
+                                </div>
+                               
+                                <div class="checkbox">
+                                    <label for="checkbox3" class="form-check-label ">
+                                        <input type="checkbox" id="checkbox3" name="delivery" value="true" class="form-check-input" <%= user.delivery ? 'checked' : '' %> >Delivery
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">save</button>
+                </form>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./parts/footer.ejs'); %>

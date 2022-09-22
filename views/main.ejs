@@ -1,0 +1,249 @@
+<%- include('./parts/header.ejs'); %>
+    <!-- HEADER DESKTOP-->
+    <header class="header-desktop3 d-none d-lg-block">
+        <div class="section__content section__content--p35">
+            <div class="header3-wrap">
+                <div class="header__logo">
+                    <a href="#">
+                        <img src="images/icon/medihublogo-white.png" alt="MediHub" />
+                    </a>
+                </div>
+                <div class="header__navbar">
+                    <ul class="list-unstyled">
+                        <li class="has-sub">
+                            <a href="/">
+                                <i class="zmdi zmdi-account-circle"></i>Home
+                                <span class="bot-line"></span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/about">
+                                <i class="zmdi zmdi-account-circle"></i>About
+                                <span class="bot-line"></span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/login">
+                                <i class="zmdi zmdi-account-circle"></i>Login
+                                <span class="bot-line"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/register">
+                                <i class="zmdi zmdi-account-add"></i>
+                                <span class="bot-line"></span>Signup</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- END HEADER DESKTOP-->
+
+    <!-- HEADER MOBILE-->
+    <header class="header-mobile header-mobile-2 d-block d-lg-none">
+        <div class="header-mobile__bar">
+            <div class="container-fluid">
+                <div class="header-mobile-inner">
+                    <a class="logo" href="/">
+                        <img src="images/icon/medihublogo-white.png" alt="MediHub" />
+                    </a>
+                    <button class="hamburger hamburger--slider" type="button">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar-mobile">
+            <div class="container-fluid">
+                <ul class="navbar-mobile__list list-unstyled">
+                    <li class="has-sub">
+                        <a href="/">
+                            <i class="zmdi zmdi-account-circle"></i>Home</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/about">
+                            <i class="zmdi zmdi-account-circle"></i>About</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/login">
+                            <i class="zmdi zmdi-account-circle"></i>Login</a>
+                    </li>
+                    <li>
+                        <a href="/register">
+                            <i class="zmdi zmdi-account-add"></i>
+                            <span class="bot-line"></span>Signup</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- END HEADER MOBILE -->
+
+    <!-- PAGE CONTENT-->
+    <div class="page-content--bgf7">
+        <!-- BREADCRUMB-->
+        <section class="au-breadcrumb2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="au-breadcrumb-content">
+                            <div class="au-breadcrumb-left">
+                                <div class="col-md-12">
+                                    <h1 class="title-4">Welcome at MediHub</h1>
+                                    <hr class="line-seprate">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END BREADCRUMB-->
+
+        <!-- STATISTICS -->
+        <section>
+            <div class="section__content section__content--p30">
+                <div class="row m-t-25 justify-content-center">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="overview-item overview-item--c1">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-account-o"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h2>
+                                            <%= members %>
+                                        </h2>
+                                        <span>Our members</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="overview-chart">
+                                <canvas id="widgetChart1"></canvas>
+                            </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="overview-item overview-item--c2">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h2>
+                                            <%= orders %>
+                                        </h2>
+                                        <span>Received Orders</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="overview-chart">
+                                <canvas id="widgetChart2"></canvas>
+                            </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="overview-item overview-item--c3">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-calendar-note"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h2>
+                                            <%= requests %>
+                                        </h2>
+                                        <span>Received Requests</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="overview-chart">
+                                <canvas id="widgetChart3"></canvas>
+                            </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c4">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="zmdi zmdi-chart"></i>
+                                </div>
+                                <div class="text">
+                                    <h2>60,386</h2>
+                                    <span>Monthly Progress</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart4"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                </div>
+                <div class="row justify-content-center typo-articles">
+                    <p class="col-lg-9 col-md-9 col-sm-12 col-12 font-italic" style="padding: 10px 15px;">
+                        &emsp; &emsp; &emsp; &emsp; Medihub is a relationship between the Customer and Medical Shop
+                        owners. You don’t
+                        need to search the medical store
+                        website over the internet. We help you get the nearest shop in your locality and help you order
+                        medicines with ease. We
+                        believe our customer’s health is our ultimate wealth. Our portal will be the best fit in
+                        Pandemic. You don’t have to
+                        visit the stores offline and pay for the medicines online, your medicines will be delivered at
+                        your doorstep.
+
+
+
+
+                    </p>
+                    <p class="col-lg-9 col-md-9 col-sm-12 col-12 font-italic" style="padding: 10px 15px;">
+                        &emsp; &emsp; &emsp; &emsp;A user can locate medical stores via Pincode or Location. To locate a
+                        medical at Emergency,
+                        medihub is the key. It is
+                        built not only to locate the medical stores in your area but also to ease the users to buy
+                        medicines virtually if you
+                        cant reach out to the stores.
+                    </p>
+                    <p class="col-lg-9 col-md-9 col-sm-12 col-12 font-italic" style="padding: 10px 15px;">
+                        &emsp; &emsp; &emsp; &emsp;Medihub is a bridge between the User and Medical Shop Owners. Our Aim
+                        is to provide accurate
+                        locations of the medical
+                        stores to save your precious time. We provide online payments to avoid cashless services in
+                        Covid Times.
+                    </p>
+                    <p class="col-lg-9 col-md-9 col-sm-12 col-12 font-italic" style="padding: 10px 15px;">
+                        &emsp; &emsp; &emsp; &emsp;We also provide full refund policy, if the desired medicines are not
+                        delivered to you. Our
+                        Payment portal is safest as
+                        we value our clients and their money too. Fraud protection is our top priority. In case you are
+                        facing some issues you
+                        can reach us out via our Email. The delivery for your medicines is 24x7 which means you don’t
+                        have to worry about the
+                        timezones.
+                    </p>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- COPYRIGHT-->
+        <section class="p-t-60 p-b-20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="copyright">
+                            <p>Copyright © 2020 MediHub. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END COPYRIGHT-->
+    </div>
+    <%- include('./parts/footer.ejs'); %>

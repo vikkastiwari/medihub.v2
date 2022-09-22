@@ -1,0 +1,164 @@
+<%- include('./parts/header.ejs'); %>
+<%- include('./parts/cnav.ejs'); %>
+<!-- MAIN CONTENT-->
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <%- include('./parts/alert.ejs'); %>
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 ">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <strong>Your Request Details</strong>
+                            </div>
+                            <div class="card-body card-block">
+                                <form action="" method="post" class="form-horizontal">
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Request Date</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=request.date %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Shop Name</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=shop.shopName %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Address</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=shop.address %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Contact No.</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=shop.mobile %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Order Type</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=request.type %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Prescription</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <!-- <strong><%=request.prescriptionImage %></strong> -->
+                                            <a target="_blank" href="/<%=request.prescriptionImage %>" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Till Date</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=request.wantDate %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label">Your Comment</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong><%=request.userComment %></strong>
+                                        </div>
+                                    </div>
+                                    <% if( request.availability ) { %>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="availability" class="form-control-label">Availability</label>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <% if(request.availability == 0){ %><strong>Not Available</strong><% } %>
+                                            <% if(request.availability == 1){ %><strong>Partially Available</strong><% } %>
+                                            <% if(request.availability == 2){ %><strong>Available</strong><% } %>
+                                            
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    <% if(request.provideDate && request.provideDate != '' ) { %>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="provideDate" class="form-control-label">Pickup / Delivery Date</label>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <strong><%=request.provideDate %></strong>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    <% if(request.shopkeeperComment && request.shopkeeperComment != '' ) { %>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="textarea-input" class="form-control-label">Shopkeeper's Comment</label>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <strong><%=request.shopkeeperComment %></strong>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    <% if(request.medicines.length != 0 ) { %>
+                                    <div class="row form-group justify-content-center">
+                                        <div class="col-lg-6">
+                                            <div class="table-responsive table--no-card m-b-30">
+                                                <table class="table table-borderless table-striped table-earning">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Medicine Name</th>
+                                                            <th>Price</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% request.medicines.forEach(medicine => { %>
+                                                            <tr v-for="(medicine, index) in medicines" :key="index">
+                                                                <td><%= medicine.name %></td>
+                                                               
+                                                                <td><%= medicine.price.toFixed(2) %></td>
+                                                                
+                                                            </tr>
+                                                        <% })%>
+                                                        <tr>
+                                                            <td class="text-right"><strong>Total</strong></td>
+                                                            <td> <strong>₹<%= total.toFixed(2) %></strong></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    <!-- <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="building" class="form-control-label"></label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <strong></strong>
+                                        </div>
+                                    </div> -->
+                                    
+                                   
+                                </form>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./parts/footer.ejs'); %>
