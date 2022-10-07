@@ -1,0 +1,6 @@
+{
+    "sessionKey":"sessionKey",
+    "sendGridAPIKey":"your_sendGridAPIKey",
+    "otpChahiye":true,
+    "mongodb_uri":"your_mongodb_uri"
+}
